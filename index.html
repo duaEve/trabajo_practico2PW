@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda de Citas - Evelyn Fabiola</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f2f6ff;
+    }
+
+    header {
+      background: #3b82f6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Agenda de Citas Médicas</h1>
+  <p>Elaborado por: Evelyn Fabiola</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Agendar Cita</h2>
+
+    <input type="text" id="nombre" placeholder="Nombre del paciente">
+    <input type="number" id="edad" placeholder="Edad">
+
+    <select id="especialidad">
+      <option>Medicina General</option>
+      <option>Pediatría</option>
+      <option>Cardiología</option>
+      <option>Odontología</option>
+    </select>
+
+    <input type="date" id="fecha">
+
+    <button onclick="agregarCita()">Guardar Cita</button>
+  </div>
+
+  <div class="card">
+    <h2>Lista de Citas</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Especialidad</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCitas">
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+  function agregarCita() {
+    let nombre = document.getElementById("nombre").value;
+    let edad = document.getElementById("edad").value;
+    let especialidad = document.getElementById("especialidad").value;
+    let fecha = document.getElementById("fecha").value;
+
+    if (nombre === "" || edad === "" || fecha === "") {
+      alert("Completa todos los campos");
+      return;
+    }
+
+    let tabla = document.getElementById("tablaCitas");
+
+    let fila = tabla.insertRow();
+
+    fila.innerHTML = `
+      <td>${nombre}</td>
+      <td>${edad}</td>
+      <td>${especialidad}</td>
+      <td>${fecha}</td>
+    `;
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("edad").value = "";
+    document.getElementById("fecha").value = "";
+  }
+</script>
+
+</body>
+</html>
